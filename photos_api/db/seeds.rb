@@ -8,5 +8,5 @@
 summer = Gallery.create(name: 'summer')
 
 Photo.create([
-    {date: "2021/05/06", author: "gilly", gallery: summer}
+    {date: "2021/05/06", photographer: "gilly", image_url: "https://images-na.ssl-images-amazon.com/images/S/cmx-images-prod/Item/48457/DIG010147_1._SX360_QL80_TTD_.jpg", gallery: summer}
 ])

@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2021_06_23_012206) do
   create_table "photos", force: :cascade do |t|
     t.string "date"
     t.string "photographer"
-    t.string "img_url"
+    t.string "image_url"
     t.integer "gallery_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
