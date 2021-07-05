@@ -8,5 +8,10 @@
 summer = Gallery.create(name: 'summer')
 
 Photo.create([
-    {date: "2021/05/06", photographer: "gilly", image_url: "https://images-na.ssl-images-amazon.com/images/S/cmx-images-prod/Item/48457/DIG010147_1._SX360_QL80_TTD_.jpg", gallery: summer}
-])
+    {date: "2021/05/06", photographer: "gilly", image: "https://images-na.ssl-images-amazon.com/images/S/cmx-images-prod/Item/48457/DIG010147_1._SX360_QL80_TTD_.jpg", gallery: summer},
+    {date: "2021/05/06", photographer: "gilly", image: "https://cdn.searchenginejournal.com/wp-content/uploads/2019/01/shutterstock_237680047-1520x800.png", gallery: summer},
+    {date: "2021/05/06", photographer: "gilly", image: "https://media.wired.com/photos/5b899992404e112d2df1e94e/master/pass/trash2-01.jpg", gallery: summer}
+    ])
+
+
+
