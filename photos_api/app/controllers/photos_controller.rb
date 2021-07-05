@@ -1,6 +1,7 @@
 class PhotosController < ApplicationController
+  
   before_action :set_photo, only: [:show, :update, :destroy]
-
+  
   # GET /photos
   def index
     photos = Photo.all
@@ -10,6 +11,7 @@ class PhotosController < ApplicationController
 
   # GET /photos/1
   def show
+    photo = Photo.find_by_id(params[:id])
     render json: photo
   end
 
@@ -35,7 +37,9 @@ class PhotosController < ApplicationController
 
   # DELETE /photos/1
   def destroy
+    photo = Photo.find_by_id(params[:id])
     photo.destroy
+    render json: {message: "#{photo.photographer} work was removed!"}
   end
 
   private
@@ -46,6 +50,6 @@ class PhotosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def photo_params
-      params.require(:photo).permit(:date, :photographer, :image_url, :gallery_id)
+      params.require(:photo).permit(:date, :photographer, :gallery_id, :image)
     end
 end
