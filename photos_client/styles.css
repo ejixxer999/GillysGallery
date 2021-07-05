@@ -1,0 +1,9 @@
+#big > img{
+    height:600;
+    width:400;
+}
+
+#little > img{
+    height:300;
+    width:200;
+}
