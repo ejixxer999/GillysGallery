@@ -56,5 +56,16 @@ class PhotoService{
         document.getElementById('gallery').value = ''
     }
 
+    deletePhoto(element){
+        element.parentElement.remove()
+        const dev = element.parentElement.dataset.id
+        fetch(`http://127.0.0.1:3000/photos/${dev}`, {
+            method: 'DELETE'
+        })
+        .then(resp => resp.json)
+        .then(data => {})
+     
+    }
+
 
 }

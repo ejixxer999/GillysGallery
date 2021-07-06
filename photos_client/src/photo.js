@@ -50,8 +50,9 @@ class Photo {
             image: <input type="text" id="photo">
             Gallery: <input type="select" id="gallery">
             <input type="submit" id="Publish">
-            </form>
-            `
+        </form>
+        
+        `
             // gallery: <input type="text" id="gallery">
     }
 }

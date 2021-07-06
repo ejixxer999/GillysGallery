@@ -40,7 +40,7 @@ function back(){
 function handleButton(event){
     if (event.target.innerText === 'Delete'){
        
-        deletePhoto(event.target)
+        photoService.deletePhoto(event.target)
 
     } else if (event.target.innerText === 'Edit'){
         editPhoto(event.target)
@@ -49,14 +49,14 @@ function handleButton(event){
 
 }
 
-function deletePhoto(element){
-   element.parentElement.remove()
-   const dev = element.parentElement.dataset.id
-   fetch(`http://127.0.0.1:3000/photos/${dev}`, {
-       method: 'DELETE'
-   })
-   .then(resp => resp.json)
-   .then(data => {})
+// function deletePhoto(element){
+//    element.parentElement.remove()
+//    const dev = element.parentElement.dataset.id
+//    fetch(`http://127.0.0.1:3000/photos/${dev}`, {
+//        method: 'DELETE'
+//    })
+//    .then(resp => resp.json)
+//    .then(data => {})
 
-}
+// }
 
