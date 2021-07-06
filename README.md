@@ -2,7 +2,7 @@
 
 A web app for the up and coming photographer. Users can upload images they have taken and want to show off to the world. Also they are able to view the works of other Artist alike.
 _______________________________________________________________________________________
-## Key Technologies, Packages, and Gems
+## Key Technologies, and Packages
 
 * Frontend
     * JavaScript
