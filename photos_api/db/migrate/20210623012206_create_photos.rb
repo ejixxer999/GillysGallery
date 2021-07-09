@@ -6,6 +6,7 @@ class CreatePhotos < ActiveRecord::Migration[6.1]
       t.integer :gallery_id
       t.string :image
 
+
       t.timestamps
     end
   end
