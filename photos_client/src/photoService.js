@@ -18,49 +18,79 @@ class PhotoService{
         })
     }
     //  sending a new image to the backend //
-    createPhoto(){
-           event.preventDefault()
+    // formData(){
+    //    const photo = {
+    //     // id: document.getElementById(`${Photo.element.id}`),
+    //     date: document.getElementById('date').value,
+    //     photographer: document.getElementById('photographer').value,
+    //     image: document.getElementById('photo').value,
+    //     gallery_id: document.getElementById('gallery_id').value
+    //    }
+        
+    // }
+    
+    createPhoto(event){
         const photo = {
+            // id: document.getElementById(`${Photo.element.id}`),
             date: document.getElementById('date').value,
             photographer: document.getElementById('photographer').value,
             image: document.getElementById('photo').value,
-            gallery_id: document.getElementById('gallery').value
-            
-        }
-          
-             
-        const configObj = {
-            method: 'POST',
+            gallery_id: document.getElementById('gallery_id').value
+           }
+        const options = {
+            method:'POST',
             headers: {
                 'Content-Type': 'application/json'
-                    
             },
             body: JSON.stringify(photo)
         }
+        
 
-        fetch(`${this.endpoint}/photos`, configObj)
+        fetch(`http://127.0.0.1:3000/photos`, options)
         .then(resp => resp.json())
         .then(photo => {
             const p = new Photo(photo)
             p.slapOnDom()
             
         })
+
            
         
+    }
+
+     photoShow(){
+        const id = event.target.parentElement.dataset.id
+        fetch(`http://127.0.0.1:3000/photos/${id}`)
+        .then(resp => resp.json())
+        .then(photo => {
+            
+            
+            photoContainer.innerHTML = ''
+            photoContainer.innerHTML += `
+            <img src=${photo.image} />
+            <br>
+            <a id="backbttn" href="#">Back</a>
+            `
+            
+            const backbttn = document.getElementById('backbttn')
+            backbttn.addEventListener('click', back)
+    
+        })
     }
 
     resetForm(){
         document.getElementById('date').value = ''
         document.getElementById('photographer').value = ''
         document.getElementById('photo').value = ''
-        document.getElementById('gallery').value = ''
+        document.getElementById('gallery_id').value = ''
     }
 
-    deletePhoto(element){
-        element.parentElement.remove()
-        const dev = element.parentElement.dataset.id
-        fetch(`http://127.0.0.1:3000/photos/${dev}`, {
-            method: 'DELETE'
+    deletePhoto(id){
+        fetch(`http://127.0.0.1:3000/photos/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'content-Type': 'application/json'
+            }
         })
         .then(resp => resp.json)
         .then(data => {})
