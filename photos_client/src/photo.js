@@ -3,7 +3,7 @@ class Photo {
     static photoContainer = document.getElementById('photos-container')
     static photoForm = document.getElementById('form-area')
 
-    constructor({id, date, image, photographer, gallery_id}){
+    constructor({id, date, image, photographer, gallery_id }){
         this.id = id
         this.date = date
         this.image = image
@@ -12,30 +12,30 @@ class Photo {
         
         this.element = document.createElement('li')
         this.element.dataset.id = `${this.id}`
-        this.element.id = `photo-${this.id}`
+        this.element.id = `${this.id}`
+        this.element.addEventListener('click', this.handleClick)
         Photo.all.push(this)
         
     }
 
     photoHTML(){
-    
-        this.element.innerHTML +=`
+        this.element.innerHTML += `
             <div data-id=${this.id}>
                 <img class="pimage" src=${this.image} height="300" width="200" />
                 <h3>${this.date}</h3>
                 <p>${this.photographer}</p>
-                </div>
-                <button>Delete</button>
+            </div>
+                <button id='delete-bttn'>Delete</button>
                 `
         
-        const grapherImg = document.getElementsByClassName('pimage')
-        for (const img of grapherImg){
-            img.addEventListener('click', photoShow)    
-        }
-        const bttns = document.querySelectorAll('button')
-        for(const button of bttns){
-            button.addEventListener('click', handleButton)
-        }
+        // const grapherImg = document.getElementsByClassName('pimage')
+        // for (const img of grapherImg){
+        //     img.addEventListener('click', this.photoShow)    
+        // }
+        // const bttns = document.querySelectorAll('button')
+        // for(const button of bttns){
+        //     button.addEventListener('click', handleButton)
+        // }
         return this.element
         
     }
@@ -48,12 +48,43 @@ class Photo {
             Date: <input type="text" id="date">
             Photographer: <input type="text" id="photographer">
             image: <input type="text" id="photo">
-            Gallery: <input type="select" id="gallery">
+            Gallery: <input type="text" id="gallery_id">
             <input type="submit" id="Publish">
         </form>
         
         `
             // gallery: <input type="text" id="gallery">
     }
+
+    handleClick = () => {
+        if (event.target.innerText ==='Delete'){
+            this.element.remove()
+            photoService.deletePhoto(this.id)
+        }else if (event.target.className === 'pimage'){
+            this.photoShow()
+        }
+    }
+
+    photoShow(){
+        const id = event.target.parentElement.dataset.id
+        
+        
+        fetch(`http://127.0.0.1:3000/photos/${id}`)
+        .then(resp => resp.json())
+        .then(photo => {
+            
+            photoContainer.innerHTML = ''
+            photoContainer.innerHTML += `
+            <img src=${photo.image} />
+            <br>
+            <a id="backbttn" href="#">Back</a>
+            `
+            
+            const backbttn = document.getElementById('backbttn')
+            backbttn.addEventListener('click', back)
+    
+        })
+    }
+
 }
 
