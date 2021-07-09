@@ -1,27 +1,28 @@
-class galleryService{
+class GalleryService{
 
     constructor(endpoint){
-        this.endpont = endpoint
+        this.endpoint = endpoint
+        
     }
 
     getGalleries(){
 
         fetch(`${this.endpoint}/galleries`)
         .then(resp => resp.json())
-        .then(gallery => {
-            for (const g of gallery){
+        .then(galleries => {
+            for (const gallery of galleries){
                 const g = new Gallery(gallery)
-                p.slapOnDom()
+                  g.appendToDOM
             }
            
         })
         
     }
 
-    createGallery(){
+    createGallery(event){
         event.preventDefault()
      const gallery = {
-         name: document.getElementById('name').value,   
+         name: document.getElementById('gallery').value,   
         }
        
           
@@ -31,18 +32,19 @@ class galleryService{
              'Content-Type': 'application/json'
                  
          },
-         body: JSON.stringify(photo)
+         body: JSON.stringify(gallery)
      }
 
      fetch(`${this.endpoint}/galleries`, configObj)
      .then(resp => resp.json())
      .then(gallery => {
          const g = new Gallery(gallery)
-         g.slapOnDom()
+         g.appendToDOM()
          
      })
-        
-     
- }
+    }
+
+   
+ 
 
 }
