@@ -10,12 +10,13 @@ class GalleriesController < ApplicationController
 
   # GET /galleries/1
   def show
+    gallery = Gallery.find_by_id(params[:id])
     render json: gallery
   end
 
   # POST /galleries
   def create
-    gallery = Gallery.new(gallery_params)
+    gallery = Gallery.find_or_create_by(gallery_params)
 
     if gallery.save
       render json: gallery, status: :created, location: gallery
