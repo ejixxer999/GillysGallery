@@ -4,44 +4,27 @@ class GalleryService{
         this.endpoint = endpoint
         
     }
-
-    getGalleries(){
-
-        fetch(`${this.endpoint}/galleries`)
-        .then(resp => resp.json())
-        .then(galleries => {
-            for (const gallery of galleries){
-                const g = new Gallery(gallery)
-                  g.appendToDOM
-            }
-           
-        })
-        
-    }
-
+//---------------- Create Gallery-------------------------//
     createGallery(event){
-        event.preventDefault()
+     event.preventDefault()
      const gallery = {
-         name: document.getElementById('gallery').value,   
+         name: document.getElementById('gallery').value   
         }
        
-          
      const configObj = {
          method: 'POST',
          headers: {
-             'Content-Type': 'application/json'
-                 
+             'Content-Type': 'application/json'    
          },
          body: JSON.stringify(gallery)
-     }
+        }
 
      fetch(`${this.endpoint}/galleries`, configObj)
      .then(resp => resp.json())
      .then(gallery => {
          const g = new Gallery(gallery)
          g.appendToDOM()
-         
-     })
+        })
     }
 
    
